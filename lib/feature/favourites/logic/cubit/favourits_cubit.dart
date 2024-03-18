@@ -11,16 +11,16 @@ class FavouritsCubit extends Cubit<FavouritsState> {
   FavouritsCubit() : super(FavouritsInitial());
   List<Item> favouritsList = [];
 
-  
-
-  
-
   toggleFavourits(int index) {
-    allitemList[index].favourite
-        ? allitemList[index].favourite = false
-        : allitemList[index].favourite = true;
-
-    allitemList[index].favourite
+    for (var item in allitemList) {
+      if (item.index == index) {
+        item.favourite = !item.favourite;
+      }
+    }
+    // !allitemList[index].favourite
+    //     ? allitemList[index].favourite = false
+    //     : allitemList[index].favourite = true;
+    !allitemList[index].favourite
         ? emit(FavouritsRemoved())
         : emit(FavouritsAdded());
   }
